@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список прочитанных книг</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .book-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        
+        .book-author {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .book-name {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Список прочитанных книг</h1>
+        
+        <form action="/add" method="POST">
+            <div class="form-group">
+                <label for="author">Автор:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Название:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <button type="submit">Добавить книгу</button>
+        </form>
+        
+        <hr>
+        
+        <h2>Мои книги:</h2>
+        {% if books %}
+            {% for book in books %}
+                <div class="book-item">
+                    <div class="book-author">{{ book.author }}</div>
+                    <div class="book-name">{{ book.name }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Список книг пуст</p>
+        {% endif %}
+    </div>
+</body>
+</html>
